@@ -29,4 +29,46 @@ describe "test de tito" {
         assert.equals(0,tito.velocidad())
     }
 
+    test "si tito consume un litro de licuado con 10 nutrientes su velocidad es de 70" {
+      licuado.agregar(4)
+      licuado.agregar(6)
+      tito.consumir(1000, licuado)
+      assert.equals(70 , tito.velocidad())
+    }
+
+    test "pero si tito consume un litro y medio de licuado con 10 nutrientes, el efecto es el mismo porque es por litro" {
+      licuado.agregar(4)
+      licuado.agregar(6)
+      tito.consumir(1500, licuado)
+      assert.equals(70 , tito.velocidad())
+    }
+
+    test "y si tito consume 2 litros de licuado con 10 nutrientes, el efecto es el doble (140)" {
+      licuado.agregar(4)
+      licuado.agregar(6)
+      tito.consumir(2000, licuado)
+      assert.equals(140 , tito.velocidad())
+    }
+
+    test "si se toman 10 cm3 de agua saborizada con wisky la velocidad maxima de tito es de 12.37901" {
+      aguaSaborizada.bebida(wisky)
+      tito.consumir(10, aguaSaborizada)
+      assert.equals(12.37901 , tito.velocidad())
+    }
+
+    test "si tito toma 10 cm3 del coctel de terere y wisky su velocidad maxima es de 2.44076" {
+      tito.consumir(10, coctelDeBebidas)
+      assert.equals(2.44076 , tito.velocidad())
+    }
+
+    test "pero si tito le agrega cianuro a ese mismo coctel su velocidad maxima es de 0" {
+      coctelDeBebidas.agregarBebida(cianuro)
+      tito.consumir(10, coctelDeBebidas)
+      assert.equals(0 , tito.velocidad())
+    }
+
+    test "si tito toma 10 cm3 del coctel suave de terere y wisky su velocidad maxima es de 7, debido a que solamente toma el rendimiento del terere" {
+      tito.consumir(10, coctelSuave)
+      assert.equals(7 , tito.velocidad())
+    }
 }
